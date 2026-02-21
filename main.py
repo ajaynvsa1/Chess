@@ -4,7 +4,10 @@ bw = ["■","□"]
 board = [[bw[abs(row%2 - col%2)] for col in range(cols)] for row in range(rows)]
 board[1] = ["♙" for col in range(cols)]
 board[6] = ["♟" for col in range(cols)]
-
+BPiece = ["♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"]
+WPiece = ["♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"]
+board[0] = BPiece
+board[7] = WPiece
 
 def print_board():
     for row in range(rows):
@@ -12,6 +15,16 @@ def print_board():
             rep  = board[row][col]
             print(rep,end=" ")
         print()
+        
+def handle_move(move):
+    
+
+
+
+
+
+    return
+
 
 print_board()
 # def main_game_loop():return
@@ -23,4 +36,3 @@ print_board()
 # While the main game loop is going on
 # Every iteration should end with printing the board
 # Constant Data: board dimensions, piece moves, 
-# We'll keep track of: board, turn, winOrNot, castling allowed, material
