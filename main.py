@@ -49,75 +49,23 @@ def isWhite(piece):
     
 
 #Return union of all bishop moves
-
-def getSeBishopMoves(row, col):
-    currRow = row+1
-    currCol = col+1
-    moves = []
-    while(currRow < 8 and currCol < 8):
-        if(board[currRow][currCol] in squares): 
-            moves.append(tuple(currRow, currCol))
-        else:
-            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
-                moves.append(tuple(currRow, currCol))
-            return moves
-        currRow +=1
-        currCol +=1
-    return moves
-
-def getSwBishopMoves(row, col):
-    currRow = row+1
-    currCol = col-1
-    moves = []
-    while(currRow < 8 and currCol > -1):
-        if(board[currRow][currCol] in squares): 
-            moves.append(tuple(currRow, currCol))
-        else:
-            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
-                moves.append(tuple(currRow, currCol))
-            return moves
-        currRow +=1
-        currCol -=1
-    return moves
-
-def getNwBishopMoves(row, col):
-    currRow = row-1
-    currCol = col-1
-    moves = []
-    while(currRow >-1 and currCol >-1):
-        if(board[currRow][currCol] in squares): 
-            moves.append(tuple(currRow, currCol))
-        else:
-            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
-                moves.append(tuple(currRow, currCol))
-            return moves
-        currRow -=1
-        currCol -=1
-    return moves   
-
-def getNeBishopMoves(row, col):
-    currRow = row-1
-    currCol = col+1
-    moves = []
-    while(currRow >-1 and currCol < 8):
-        if(board[currRow][currCol] in squares): 
-            moves.append(tuple(currRow, currCol))
-        else:
-            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
-                moves.append(tuple(currRow, currCol))
-            return moves
-        currRow -=1
-        currCol +=1
-    return moves
-
 def bishopMoves(row, col):
-    move = []
-    move.extend(getSeBishopMoves(row, col))
-    move.extend(getSwBishopMoves(row, col))
-    move.extend(getNwBishopMoves(row, col))
-    move.extend(getNeBishopMoves(row, col))
-    return move
-    
+    moves = []
+    for i in range(-1,2,2):
+        for j in range(-1,2,2):
+            currRow = row+i
+            currCol = col+j
+
+            while(currRow > -1 and currCol > -1 and currRow < 8 and currCol < 8):
+                if(board[currRow][currCol] in squares): 
+                    moves.append(tuple(currRow, currCol))
+                else:
+                    if(isWhite(board[currRow][currCol]) != isWhiteTurn):
+                        moves.append(tuple(currRow, currCol))
+                    return moves
+                currRow += i
+                currCol += j
+    return moves
 
 def rookMoves(row, col):
     
