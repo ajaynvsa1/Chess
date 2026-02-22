@@ -1,7 +1,7 @@
 cols = 8
 rows = 8
-bw = ["■","□"]
-board = [[bw[abs(row%2 - col%2)] for col in range(cols)] for row in range(rows)]
+squares = ["■","□"]
+board = [[squares[abs(row%2 - col%2)] for col in range(cols)] for row in range(rows)]
 board[1] = ["♙" for col in range(cols)]
 board[6] = ["♟" for col in range(cols)]
 BPiece = ["♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"]
