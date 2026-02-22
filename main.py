@@ -10,6 +10,7 @@ board[0] = BPiece
 board[7] = WPiece
 WPieceMap = {"R":"♜", "N":"♞", "B":"♝", "Q":"♛", "K":"♚"}
 BPieceMap = {"R":"♖", "N":"♘", "B":"♗", "Q":"♕", "K":"♔"}
+isWhiteTurn = True
 
 def print_board():
     for row in range(rows):
@@ -17,27 +18,56 @@ def print_board():
             rep  = board[row][col]
             print(rep,end=" ")
         print()
-        
+
+# returns 0 if move handled successfully, -1 otherwise
 def handle_move(move):
-    loc0 = move[:2]
-    locF = move[2:]
-    if loc0[0].isalpha() and loc0[1].isnumeric() and locF.isalpha() and locF.isnumeric() and 
-    map(ord, loc0[0]) is in range(97, 105) and loc0[1] is in range(1, 9) and map(ord, locF[0]) is in range(97, 105) and locF[1] is in range(1, 9):
+    if(len(move) != 4): return -1
+    if(not(move[0].isalpha() and move[1].isnumeric() and
+            move[2].isalpha() and move[3].isnumeric() )):
+        return -1
+    square1 = move[:2]
+    square2 = move[2:]
+    square1Row = 8-int(square1[1])
+    square1Col = int(square1[0]-'a')
+    piece = board[square1Row][square1Col]
 
-    else: 
-        return False
-
-        
-
-
-    move = 
-    rowNum = 8-x
-
+    # Work In Progress
 
 
 
 
     return
+
+def knightMoves(row, col):return
+    
+#Return union of all bishop moves
+def bishopMoves(row, col):return
+def getNeBishopMoves(row, col):
+    currRow = row+1
+    currCol = col+1
+    moves = []
+    enemyCount = 0
+    while(currRow < 8 and currCol < 8):
+        if(board[currRow][currCol] in squares):
+            moves.append(tuple(currRow, currCol))
+        else:
+            if(isWhite(board[currRow][currCol]) == isWhiteTurn):
+                return moves
+            else:
+                if(enemyCount == 0):
+                    enemyCount += 1
+                    moves.append(tuple(currRow, currCol))
+                else:
+                    return moves
+def getSwBishopMoves(row, col):return
+def getNwBishopMoves(row, col):return
+def getSeBishopMoves(row, col):return
+
+    
+def rookMoves(row, col):return
+def queenMoves(row, col):return (bishopMoves(row,col) + rookMoves(row,col))
+
+def isWhite(piece):return
 
 
 print_board()
