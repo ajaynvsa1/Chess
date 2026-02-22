@@ -40,34 +40,91 @@ def handle_move(move):
 
 def knightMoves(row, col):return
     
+
+def isWhite(piece):
+    if (piece in WPiece) or (piece == "♟"):
+        return True
+    else:
+        return False
+    
+
 #Return union of all bishop moves
-def bishopMoves(row, col):return
-def getNeBishopMoves(row, col):
+
+def getSeBishopMoves(row, col):
     currRow = row+1
     currCol = col+1
     moves = []
-    enemyCount = 0
     while(currRow < 8 and currCol < 8):
-        if(board[currRow][currCol] in squares):
+        if(board[currRow][currCol] in squares): 
             moves.append(tuple(currRow, currCol))
         else:
-            if(isWhite(board[currRow][currCol]) == isWhiteTurn):
-                return moves
-            else:
-                if(enemyCount == 0):
-                    enemyCount += 1
-                    moves.append(tuple(currRow, currCol))
-                else:
-                    return moves
-def getSwBishopMoves(row, col):return
-def getNwBishopMoves(row, col):return
-def getSeBishopMoves(row, col):return
+            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
+                moves.append(tuple(currRow, currCol))
+            return moves
+        currRow +=1
+        currCol +=1
+    return moves
 
+def getSwBishopMoves(row, col):
+    currRow = row+1
+    currCol = col-1
+    moves = []
+    while(currRow < 8 and currCol > -1):
+        if(board[currRow][currCol] in squares): 
+            moves.append(tuple(currRow, currCol))
+        else:
+            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
+                moves.append(tuple(currRow, currCol))
+            return moves
+        currRow +=1
+        currCol -=1
+    return moves
+
+def getNwBishopMoves(row, col):
+    currRow = row-1
+    currCol = col-1
+    moves = []
+    while(currRow >-1 and currCol >-1):
+        if(board[currRow][currCol] in squares): 
+            moves.append(tuple(currRow, currCol))
+        else:
+            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
+                moves.append(tuple(currRow, currCol))
+            return moves
+        currRow -=1
+        currCol -=1
+    return moves   
+
+def getNeBishopMoves(row, col):
+    currRow = row-1
+    currCol = col+1
+    moves = []
+    while(currRow >-1 and currCol < 8):
+        if(board[currRow][currCol] in squares): 
+            moves.append(tuple(currRow, currCol))
+        else:
+            if(isWhite(board[currRow][currCol]) != isWhiteTurn):
+                moves.append(tuple(currRow, currCol))
+            return moves
+        currRow -=1
+        currCol +=1
+    return moves
+
+def bishopMoves(row, col):
+    move = []
+    move.extend(getSeBishopMoves(row, col))
+    move.extend(getSwBishopMoves(row, col))
+    move.extend(getNwBishopMoves(row, col))
+    move.extend(getNeBishopMoves(row, col))
+    return move
     
-def rookMoves(row, col):return
+
+def rookMoves(row, col):
+    
+    return
 def queenMoves(row, col):return (bishopMoves(row,col) + rookMoves(row,col))
 
-def isWhite(piece):return
+
 
 
 print_board()
